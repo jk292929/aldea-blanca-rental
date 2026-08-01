@@ -23,17 +23,61 @@ _headers             Cloudflare cache-control rules (images/css/js) — Workers
                      Static Assets default to max-age=0 otherwise
 ```
 
+## Facts, and where they came from
+
+Every number and claim on the page is either verifiable on JustRent
+Marbella's public listing for this property or was confirmed directly by
+the owner. Do not add a fact that is neither.
+
+From the JustRent listing: rates €271–€714/night incl. VAT, pool heating
+€50/night, final cleaning €360/booking, registration **VUT/MA/88632**,
+4 bedrooms (3 double + 1 single), 3 shower bathrooms, sleeps 7, 180 m²
+interior, 585 m² plot, sandy beach 1.8 km, Golf Valley 3.6 km, airport
+63 km.
+
+From the owner, where the listing was wrong or vague: **three** communal
+pools in the urbanisation (one very large), SuperCor within an easy walk,
+and parking that is **within the urbanisation, not private to the house**.
+
+Deliberately absent: reviews, ratings, review/rating structured data, a
+floor plan. The only reviews that exist are on Airbnb and republishing
+them has not been cleared.
+
+FAQ structured data is also deliberately absent: Google restricted FAQ
+rich results to government and health sites in 2023, so it would earn
+nothing while adding a second copy of every answer to keep in sync.
+
 ## Things that live in more than one place
 
 Plain HTML has no shared constants, so these are duplicated on purpose —
 grep before changing either one so all copies move together:
 
-- **Booking link** (`https://www.justrentmarbella.com/...`) — 5 places in
-  `index.html`. `grep -n justrentmarbella.com index.html` to find them, or
+- **Booking link** (`https://www.justrentmarbella.com/...`) — several
+  places in `index.html`. `grep -n justrentmarbella.com index.html`, or
   `sed -i '' 's#OLD_URL#NEW_URL#g' index.html` to replace all at once.
 - **Coordinates** (`36.4897, -4.96301`) — the JSON-LD `geo` block and the
-  OpenStreetMap `iframe` `src` in the location section both encode the same
-  point. `grep -n "36.4897\|4.96301" index.html`.
+  OpenStreetMap `iframe` `src` both encode the same point.
+  `grep -n "36.4897\|4.96301" index.html`.
+- **The price range** (`€271`/`€714`) — once in the rates heading and once
+  in the JSON-LD `priceRange`. The other two prices (`€50`, `€360`) appear
+  exactly once each, in the rates list; the FAQ refers to them in words on
+  purpose so there is nothing to keep in sync. `grep -n "€" index.html`.
+
+## Measurement
+
+No analytics, no cookies and no third-party scripts are loaded today, so
+the site needs no consent banner. What is already wired:
+
+- Every outbound link carries `data-justrent="<placement>"` and fires a
+  `click_to_justrent` event on `window.dataLayer` with placement, link
+  text, URL and path.
+- Incoming `utm_*`, `gclid` and `fbclid` are forwarded to the JustRent
+  link so a campaign keeps its trail. Only those keys — never the whole
+  query string, which could carry something personal.
+
+Nothing consumes `dataLayer` yet. Adding Google Tag Manager makes the
+events live without touching the markup; that introduces cookies and the
+consent obligations that come with them.
 
 ## Replacing a photo
 
