@@ -81,23 +81,34 @@ consent obligations that come with them.
 
 ## Replacing a photo
 
-`images/` holds the real photography (hero, three story shots, six gallery
-shots, and the social-share `og-image.jpg`), optimised with `sips`. The
-hero and the three story photos each ship two widths plus a `.webp`
-sibling of every JPEG, wired up via `<picture>`/`srcset` (copy any of them
-in `index.html` as a template):
+Everything in `images/` is built by one script, and that script is the
+only place sizes, quality and colour are decided:
 
 ```bash
-sips -Z 1000 -s format jpeg -s formatOptions 62 images/story-x.jpg      # full
-sips -Z 800  -s format jpeg -s formatOptions 62 images/story-x-800.jpg  # small
-cwebp -q 72 images/story-x.jpg -o images/story-x.webp
-cwebp -q 72 images/story-x-800.jpg -o images/story-x-800.webp
+brew install imagemagick webp          # once
+./scripts/optimise-photos.sh ~/originals
 ```
 
-`cwebp` comes from `brew install webp`. Keep `loading="lazy"` on anything
-below the hero, and match `width`/`height` on the `<img>` to the *full*
-size to avoid layout shift. The hero is the only image that loads eagerly
-(`fetchpriority="high"`, no `loading="lazy"`).
+It rebuilds the whole set — every width, every `.webp` sibling, the
+portrait hero crop and the share card — from a folder of full-size
+originals. Those originals are the files on the JustRent Marbella
+listing and are deliberately not committed; the script's header says so.
+Re-run it whenever a photo changes so the set keeps one look rather than
+drifting a shot at a time.
+
+**The photographs are graded, and that is on purpose.** They came off the
+camera flat — hard Andalusian sun washes the water out, and the pool read
+grey-green rather than turquoise. The script puts back what the eye sees
+standing there: saturation and a little contrast, with a nudge on blue
+for the water. Outdoor and interior shots get different grades, because
+pushing saturation in a room full of white surfaces tints the walls and
+makes it look retouched. Saturation leaves neutrals alone, so the
+whitewash stays white in both.
+
+Keep `loading="lazy"` on anything below the hero, and match `width`/
+`height` on the `<img>` to the *full* size to avoid layout shift. The
+hero is the only image that loads eagerly (`fetchpriority="high"`, no
+`loading="lazy"`).
 
 **The hero ships a third file: a portrait crop.** A phone is around
 0.48:1 and the landscape frame is 1.44:1, so `object-fit: cover` throws
