@@ -19,6 +19,8 @@ js/main.js           one small progressive enhancement (walk-time ruler fill)
 icons/, favicon.*    brand mark (ripple rings) — see scripts/generate-brand-assets.js
 images/og-image.jpg  social share image (real photo, not generated)
 robots.txt, sitemap.xml
+_headers             Cloudflare cache-control rules (images/css/js) — Workers
+                     Static Assets default to max-age=0 otherwise
 ```
 
 ## Things that live in more than one place
