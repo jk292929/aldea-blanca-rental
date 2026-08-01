@@ -130,14 +130,29 @@ a:focus-visible, button:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background:
-    radial-gradient(120% 90% at 14% 30%, rgba(76, 156, 147, 0.35), transparent 60%),
-    linear-gradient(150deg, #16211d 0%, var(--ink) 55%, var(--ink-soft) 100%);
+  background: var(--ink);
   color: var(--sand);
   overflow: hidden;
 }
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(120% 90% at 14% 30%, rgba(76, 156, 147, 0.3), transparent 60%),
+    linear-gradient(180deg, rgba(22, 33, 29, 0.55) 0%, rgba(27, 38, 34, 0.72) 45%, rgba(27, 38, 34, 0.93) 100%);
+}
 .hero__rings {
   position: absolute;
+  z-index: 2;
   right: -10%;
   top: 50%;
   transform: translateY(-50%);
@@ -162,6 +177,7 @@ a:focus-visible, button:focus-visible {
 
 .hero__body {
   position: relative;
+  z-index: 3;
   padding: 7rem var(--gutter) 4.5rem;
   display: grid;
   gap: 2.5rem;
@@ -297,40 +313,12 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 .story__art {
   aspect-ratio: 4 / 3;
   border-radius: 3px;
-  position: relative;
   overflow: hidden;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
-
-/* ---------- Placeholder art tiles ---------- */
-.tile {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  aspect-ratio: 4 / 3;
-  border-radius: 3px;
-  overflow: hidden;
-  color: var(--sand);
-}
-.tile__label {
-  position: relative;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 1rem 1.1rem;
-}
-.tile__mark {
-  position: absolute;
-  inset: 0;
-  opacity: 0.55;
-}
-.tile--1 { background: linear-gradient(155deg, #24413c, var(--ink)); }
-.tile--2 { background: linear-gradient(155deg, #3a5a53, #1f2e29); }
-.tile--3 { background: linear-gradient(155deg, #4c6b63, var(--ink-soft)); }
-.tile--4 { background: linear-gradient(155deg, #2e6e68, #16211d); }
-.tile--5 { background: linear-gradient(155deg, #567b6e, #223530); }
-.tile--6 { background: linear-gradient(155deg, #223530, #0f1613); }
 
 /* ---------- Gallery ---------- */
 .gallery__grid {
@@ -338,12 +326,13 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.9rem;
 }
-.gallery__note {
-  margin-top: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--ink-soft);
-  opacity: 0.7;
+.gallery__grid img {
+  aspect-ratio: 4 / 3;
+  border-radius: 3px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* ---------- Area: walk ruler ---------- */

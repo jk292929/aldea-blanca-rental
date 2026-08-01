@@ -21,16 +21,15 @@ images/og-image.png  social share image
 robots.txt, sitemap.xml
 ```
 
-## Replacing the placeholder photos
+## Replacing a photo
 
-The gallery and story sections currently use generated colour-field tiles
-(`.tile--1` … `.tile--6` in `css/style.css`) labelled by room, as stand-ins
-for real photography. To swap one in:
-
-1. Add the optimised photo to `images/`.
-2. Replace the `<div class="tile ...">` with an `<img>` pointing at it
-   (keep `loading="lazy"` on anything below the hero, and set `width`/
-   `height` attributes matching the real image to avoid layout shift).
+`images/` holds the real photography (hero, three story shots, six gallery
+shots, and the social-share `og-image.jpg`), optimised with `sips` — see
+each file's dimensions before replacing so the new one matches (`sips -g
+pixelWidth -g pixelHeight images/<file>.jpg`). Keep `loading="lazy"` on
+anything below the hero, and match `width`/`height` attributes to the new
+file to avoid layout shift. The hero image is the only one that loads
+eagerly (`fetchpriority="high"`, no `loading="lazy"`).
 
 ## Regenerating brand assets
 
