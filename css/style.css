@@ -313,6 +313,10 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   gap: 1.75rem;
   align-items: center;
 }
+/* 860px is also written into the story images' sizes="" in index.html, where
+   it tells the browser the picture drops to half-width. Plain HTML has no way
+   to share the number, and a mismatch is invisible — the page still looks
+   right, the browser just downloads the wrong file. Move both together. */
 @media (min-width: 860px) {
   .story__block { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
   .story__block--reverse .story__text { order: 2; }

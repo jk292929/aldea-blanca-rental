@@ -62,8 +62,10 @@ for (const link of document.querySelectorAll('[data-justrent]')) {
         if (!target.searchParams.has(key)) target.searchParams.set(key, value);
       }
       link.href = target.toString();
-    } catch {
-      // Malformed href: leave the link exactly as authored rather than break it.
+    } catch (err) {
+      // Leave the link exactly as authored rather than break the one thing
+      // this page exists to do. Loud in the console, silent to the visitor.
+      console.warn('[aldeablanca] could not attach campaign params to', link.href, err);
     }
   }
 

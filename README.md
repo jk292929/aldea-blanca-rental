@@ -83,24 +83,33 @@ consent obligations that come with them.
 
 `images/` holds the real photography (hero, three story shots, six gallery
 shots, and the social-share `og-image.jpg`), optimised with `sips`. The
-hero and the three story photos each ship two sizes — a full one and a
-`-600`/`-700` mobile one — plus a `.webp` sibling of every JPEG, all
-wired up via `<picture>`/`srcset` (see any of them in `index.html` as a
-template). Regenerate a replacement the same way:
+hero and the three story photos each ship two widths plus a `.webp`
+sibling of every JPEG, wired up via `<picture>`/`srcset` (copy any of them
+in `index.html` as a template):
 
 ```bash
-sips -Z 1000 -s format jpeg -s formatOptions 65 images/story-x.jpg   # full size
-sips -Z 600  -s format jpeg -s formatOptions 65 images/story-x-600.jpg
+sips -Z 1000 -s format jpeg -s formatOptions 62 images/story-x.jpg      # full
+sips -Z 800  -s format jpeg -s formatOptions 62 images/story-x-800.jpg  # small
 cwebp -q 72 images/story-x.jpg -o images/story-x.webp
-cwebp -q 72 images/story-x-600.jpg -o images/story-x-600.webp
+cwebp -q 72 images/story-x-800.jpg -o images/story-x-800.webp
 ```
 
 `cwebp` comes from `brew install webp`. Keep `loading="lazy"` on anything
 below the hero, and match `width`/`height` on the `<img>` to the *full*
 size to avoid layout shift. The hero is the only image that loads eagerly
-(`fetchpriority="high"`, no `loading="lazy"`). The six gallery photos are
-single-size (700w) — small and below-the-fold enough that a mobile variant
-isn't worth the added complexity.
+(`fetchpriority="high"`, no `loading="lazy"`).
+
+**Pick the small width against device pixel ratio, not viewport width.**
+A 390 px phone at DPR 2 asks for 780 px, so a 700 px variant is never
+chosen — the browser skips it and takes the full desktop file instead.
+That is why the tiers are 900 w (hero) and 800 w (story), and why the six
+gallery photos ship one width only: at 700 w displayed small and below the
+fold, a second tier would buy nothing. Verify a change rather than assume
+it, with the preview open at a phone size:
+
+```js
+document.querySelector('.hero__photo').currentSrc   // which file won
+```
 
 ## Regenerating the favicon set
 
