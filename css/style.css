@@ -208,6 +208,16 @@ a:focus-visible, button:focus-visible {
   justify-content: space-between;
   gap: 2rem;
 }
+.hero__cta { display: grid; gap: 0.7rem; justify-items: start; }
+
+/* Quiet reassurance under a call to action — never competes with it. */
+.trust-line {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  margin: 0;
+  color: color-mix(in srgb, currentcolor 70%, transparent);
+}
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -306,8 +316,9 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 @media (min-width: 860px) {
   .story__block { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
   .story__block--reverse .story__text { order: 2; }
-  .story__block--reverse .story__art { order: 1; }
+  .story__block--reverse .story__figure { order: 1; }
 }
+.story__figure { margin: 0; }
 .story__text p { margin: 0 0 1rem; }
 .story__text p:last-child { margin-bottom: 0; }
 .story__art {
@@ -320,12 +331,51 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   display: block;
 }
 
+/* ---------- Booking & rates ---------- */
+.booking { background: var(--sand-dim); }
+.booking__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+@media (min-width: 860px) {
+  .booking__grid { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+.booking__facts { margin: 0; display: grid; gap: 1.4rem; }
+.booking__facts div { border-top: 1px solid var(--line); padding-top: 0.9rem; }
+.booking__facts dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pool);
+  margin-bottom: 0.35rem;
+}
+.booking__facts dd { margin: 0; }
+.booking__who h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 1rem;
+  margin: 0 0 0.9rem;
+}
+.booking__who p { margin: 0 0 1rem; }
+.booking__licence {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.booking__who .btn { margin-top: 0.5rem; }
+.booking__who .trust-line { margin-top: 0.7rem; }
+
 /* ---------- Gallery ---------- */
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.9rem;
 }
+.gallery__grid figure { margin: 0; }
 .gallery__grid picture,
 .gallery__grid img {
   aspect-ratio: 4 / 3;
@@ -336,6 +386,29 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   display: block;
 }
 
+/* Captions say what the picture shows — plainly, not as a second headline. */
+figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+
+/* ---------- FAQ ---------- */
+.faq__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem 2.5rem;
+}
+.faq__item h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+.faq__item p { margin: 0; }
+
 /* ---------- Area: walk ruler ---------- */
 .ruler { margin-block: 2.5rem 1.5rem; }
 .ruler__track {
@@ -344,11 +417,13 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   background: var(--line);
   margin-inline: 0.5rem;
 }
+/* Filled by default so the ruler still reads without JavaScript; main.js
+   collapses it to 0 and lets it grow back when it scrolls into view. */
 .ruler__fill {
   position: absolute;
   inset-block: 0;
   left: 0;
-  width: 0%;
+  width: 98%;
   background: var(--pool);
   transition: width 1.1s cubic-bezier(.2,.7,.2,1);
 }
@@ -480,4 +555,16 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
 @media (max-width: 640px) {
   .mobile-book { display: block; }
   body { padding-bottom: 4.2rem; }
+  /* The hero already carries the call to action on a phone; a second one in
+     the header would be the third identical button in a single screenful. */
+  .site-header .book-link { display: none; }
 }
+
+/* main.js adds this while the hero's own button is on screen, so the sticky
+   bar only appears once that button has scrolled away. Absent JavaScript the
+   class is never added and the bar simply stays visible. */
+.mobile-book.is-stowed {
+  transform: translateY(110%);
+  pointer-events: none;
+}
+.mobile-book { transition: transform 0.28s cubic-bezier(.2,.7,.2,1); }

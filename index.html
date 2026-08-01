@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aldea Blanca Townhouse for Rent — Private Pool, Marbella</title>
-<meta name="description" content="The only home in Aldea Blanca with a private, heatable pool of its own — plus three communal pools, no car needed, and Puerto Banús on foot.">
+<title>Aldea Blanca Rental with Private Heatable Pool | Marbella</title>
+<meta name="description" content="Four-bedroom townhouse in Aldea Blanca, Nueva Andalucía, with its own private heatable pool, garden and parking in the urbanisation. Sleeps 7, walking distance to Puerto Banús.">
 <link rel="canonical" href="https://aldeablancarental.com/">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Aldea Blanca">
-<meta property="og:title" content="Aldea Blanca Townhouse for Rent — Private Pool, Marbella">
-<meta property="og:description" content="The only home in Aldea Blanca with a private, heatable pool of its own — plus three communal pools, no car needed, and Puerto Banús on foot.">
+<meta property="og:site_name" content="Aldea Blanca Rental">
+<meta property="og:title" content="Aldea Blanca Rental with Private Heatable Pool | Marbella">
+<meta property="og:description" content="Four-bedroom townhouse in Aldea Blanca, Nueva Andalucía, with its own private heatable pool, garden and parking in the urbanisation. Sleeps 7, walking distance to Puerto Banús.">
 <meta property="og:url" content="https://aldeablancarental.com/">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://aldeablancarental.com/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The townhouse, garden and private pool in Aldea Blanca, Nueva Andalucía">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aldea Blanca Townhouse for Rent — Private Pool, Marbella">
-<meta name="twitter:description" content="The only home in Aldea Blanca with a private, heatable pool of its own — plus three communal pools, no car needed, and Puerto Banús on foot.">
+<meta name="twitter:title" content="Aldea Blanca Rental with Private Heatable Pool | Marbella">
+<meta name="twitter:description" content="Four-bedroom townhouse in Aldea Blanca, Nueva Andalucía, with its own private heatable pool, garden and parking in the urbanisation. Sleeps 7, walking distance to Puerto Banús.">
 <meta name="twitter:image" content="https://aldeablancarental.com/images/og-image.jpg">
+<meta name="twitter:image:alt" content="The townhouse, garden and private pool in Aldea Blanca, Nueva Andalucía">
 
 <meta name="theme-color" content="#1b2622">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -31,10 +34,15 @@
 {
   "@context": "https://schema.org",
   "@type": "VacationRental",
-  "name": "Aldea Blanca Townhouse for Rent",
-  "description": "The only townhouse in Aldea Blanca, Nueva Andalucía with its own private, heatable swimming pool. Scandinavian-style interiors, 585 m² plot, sleeps 7 across four bedrooms.",
+  "name": "Private pool townhouse in Aldea Blanca, Nueva Andalucía",
+  "description": "The only townhouse in Aldea Blanca, Nueva Andalucía with its own private swimming pool, heatable on request. Scandinavian-style interiors, 180 m² across four bedrooms on a 585 m² plot, sleeping seven.",
   "url": "https://aldeablancarental.com/",
-  "image": "https://aldeablancarental.com/images/og-image.jpg",
+  "image": [
+    "https://aldeablancarental.com/images/og-image.jpg",
+    "https://aldeablancarental.com/images/gallery-pool.jpg",
+    "https://aldeablancarental.com/images/gallery-living-room.jpg",
+    "https://aldeablancarental.com/images/gallery-kitchen.jpg"
+  ],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Nueva Andalucía, Marbella",
@@ -48,16 +56,48 @@
     "longitude": -4.96301
   },
   "numberOfRooms": 4,
+  "numberOfBedrooms": 4,
+  "numberOfBathroomsTotal": 3,
+  "occupancy": {
+    "@type": "QuantitativeValue",
+    "maxValue": 7,
+    "unitCode": "C62"
+  },
+  "floorSize": {
+    "@type": "QuantitativeValue",
+    "value": 180,
+    "unitCode": "MTK"
+  },
+  "priceRange": "€271-€714 per night",
   "petsAllowed": false,
   "smokingAllowed": false,
   "amenityFeature": [
-    { "@type": "LocationFeatureSpecification", "name": "Private heatable pool" },
-    { "@type": "LocationFeatureSpecification", "name": "Private garden with BBQ" },
-    { "@type": "LocationFeatureSpecification", "name": "Air conditioning" },
-    { "@type": "LocationFeatureSpecification", "name": "Wi-Fi" },
-    { "@type": "LocationFeatureSpecification", "name": "Private parking" },
-    { "@type": "LocationFeatureSpecification", "name": "Gated community with alarm" }
-  ]
+    { "@type": "LocationFeatureSpecification", "name": "Private heatable swimming pool", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Fenced private garden", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Outdoor kitchen and barbecue", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Central heating", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Parking within the urbanisation", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Washing machine and dryer", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Gated urbanisation", "value": true }
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html",
+      "actionPlatform": [
+        "https://schema.org/DesktopWebPlatform",
+        "https://schema.org/MobileWebPlatform"
+      ]
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "JustRent Marbella",
+      "url": "https://www.justrentmarbella.com/"
+    }
+  }
 }
 </script>
 </head>
@@ -69,7 +109,7 @@
     <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="4" fill="currentColor"/></svg>
     Aldea Blanca
   </a>
-  <a class="book-link" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Book now</a>
+  <a class="book-link" data-justrent="header" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Prices &amp; availability</a>
 </header>
 
 <main id="main">
@@ -86,11 +126,14 @@
       <circle cx="100" cy="100" r="30"/>
     </svg>
     <div class="hero__body">
-      <p class="eyebrow hero__eyebrow">Nueva Andalucía &middot; Marbella</p>
-      <h1 class="hero__title">Aldea Blanca Townhouse for Rent</h1>
+      <p class="eyebrow hero__eyebrow">Aldea Blanca &middot; Nueva Andalucía &middot; Marbella</p>
+      <h1 class="hero__title">Townhouse with a private heatable pool</h1>
       <div class="hero__row">
-        <p class="hero__thesis">The only home in Aldea Blanca with a private pool of its own — heated on request, all year round, with four bedrooms and space for seven.</p>
-        <a class="btn btn--clay" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Book now</a>
+        <p class="hero__thesis">The only home in Aldea Blanca with a private pool of its own — heatable on request, so the garden works all year round. Four bedrooms, sleeps seven.</p>
+        <div class="hero__cta">
+          <a class="btn btn--clay" data-justrent="hero" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">View prices &amp; availability</a>
+          <p class="trust-line">Secure booking through JustRent Marbella</p>
+        </div>
       </div>
     </div>
   </section>
@@ -110,43 +153,85 @@
     </ul>
   </div>
 
+  <section class="booking wrap" aria-labelledby="booking-heading">
+    <div class="section-head">
+      <span class="eyebrow">Rates &amp; booking</span>
+      <h2 id="booking-heading">From €271 to €714 per night</h2>
+      <p>Rates depend on the season and the dates you choose, and include VAT. Current rates, availability and the final price for your stay are shown by JustRent Marbella, who handle the booking.</p>
+    </div>
+
+    <div class="booking__grid">
+      <dl class="booking__facts">
+        <div>
+          <dt>Nightly rate</dt>
+          <dd>VAT included. High summer sits at the top of the range, late autumn and winter at the bottom.</dd>
+        </div>
+        <div>
+          <dt>Pool heating</dt>
+          <dd>€50 per night, on request — just say so when you book</dd>
+        </div>
+        <div>
+          <dt>Final cleaning</dt>
+          <dd>€360 per booking</dd>
+        </div>
+      </dl>
+
+      <div class="booking__who">
+        <h3>Who you are booking with</h3>
+        <p>The house is let through <a href="https://www.justrentmarbella.com/" rel="noopener">JustRent Marbella</a>, a professional rental agency on the Costa del Sol. They hold the calendar, quote the price, take the payment and look after you before and during your stay.</p>
+        <p class="booking__licence">Registered tourist accommodation <strong>VUT/MA/88632</strong>.</p>
+        <a class="btn btn--clay" data-justrent="booking" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">View prices &amp; availability</a>
+        <p class="trust-line">Opens the listing at JustRent Marbella</p>
+      </div>
+    </div>
+  </section>
+
   <section class="story wrap" aria-labelledby="story-heading">
     <div class="section-head">
       <span class="eyebrow">The house</span>
-      <h2 id="story-heading">A private retreat, minutes from Puerto Banús</h2>
+      <h2 id="story-heading">A private pool, in a place where nobody else has one</h2>
     </div>
 
     <div class="story__block">
       <div class="story__text">
-        <p>Set in Aldea Blanca, one of the most sought-after urbanisations in Nueva Andalucía, this home offers something remarkably rare for the area: its own private swimming pool, which can be heated on request so it's a pleasure to enjoy all year round. Guests also have access to three further communal pools within the urbanisation.</p>
-        <p>Combine that with a large 585 m² plot and calm, minimalist Scandinavian interiors, and you have a private retreat just minutes from Puerto Banús and Marbella's finest beaches.</p>
+        <p>Aldea Blanca is one of the most sought-after urbanisations in Nueva Andalucía, and this house has something no other home in it has: a swimming pool of its own. It can be heated on request, which is what turns the garden from a summer space into a year-round one.</p>
+        <p>The plot runs to 585 m² — generous for a townhouse in this part of Marbella — and the interiors are calm, minimalist and Scandinavian. Aldea Blanca has three communal pools as well, one of them very large, but most of the time there is no reason to leave your own.</p>
       </div>
-      <picture>
-        <source type="image/webp" srcset="/images/story-pool-terrace-600.webp 600w, /images/story-pool-terrace.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
-        <img class="story__art" src="/images/story-pool-terrace.jpg" srcset="/images/story-pool-terrace-600.jpg 600w, /images/story-pool-terrace.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="The private pool and terrace" loading="lazy" width="1000" height="692">
-      </picture>
+      <figure class="story__figure">
+        <picture>
+          <source type="image/webp" srcset="/images/story-pool-terrace-600.webp 600w, /images/story-pool-terrace.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
+          <img class="story__art" src="/images/story-pool-terrace.jpg" srcset="/images/story-pool-terrace-600.jpg 600w, /images/story-pool-terrace.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="The private pool with sun loungers and a parasol, seen from the lawn" loading="lazy" width="1000" height="692">
+        </picture>
+        <figcaption>The private heatable pool, with loungers and the garden beyond</figcaption>
+      </figure>
     </div>
 
     <div class="story__block story__block--reverse">
       <div class="story__text">
-        <p>Step inside and you are greeted by a spacious, open-plan living and dining area, full of natural light and furnished with clean lines, muted tones and natural materials. The space flows into a fully equipped kitchen with a sleek island and high-end appliances — everything you need to cook properly rather than just get by.</p>
-        <p>Across 180 m² of interior space, the house sleeps up to seven guests in four bedrooms — three doubles and one single — and three modern shower bathrooms, with luxurious Scandinavian finishes throughout.</p>
+        <p>Inside, the living and dining area is open-plan and full of natural light, furnished with clean lines, muted tones and natural materials. It flows into a fully equipped kitchen with an island and good appliances — enough to cook properly, not just to get by.</p>
+        <p>Across 180 m² there are four bedrooms — three doubles and one single — sleeping seven, and three shower bathrooms including an ensuite off the main bedroom.</p>
       </div>
-      <picture>
-        <source type="image/webp" srcset="/images/story-living-kitchen-600.webp 600w, /images/story-living-kitchen.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
-        <img class="story__art" src="/images/story-living-kitchen.jpg" srcset="/images/story-living-kitchen-600.jpg 600w, /images/story-living-kitchen.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="Open-plan living and dining area" loading="lazy" width="1000" height="692">
-      </picture>
+      <figure class="story__figure">
+        <picture>
+          <source type="image/webp" srcset="/images/story-living-kitchen-600.webp 600w, /images/story-living-kitchen.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
+          <img class="story__art" src="/images/story-living-kitchen.jpg" srcset="/images/story-living-kitchen-600.jpg 600w, /images/story-living-kitchen.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="Open-plan living and dining room with a round dining table and the kitchen behind" loading="lazy" width="1000" height="692">
+        </picture>
+        <figcaption>Open-plan living and dining, with the kitchen island beyond</figcaption>
+      </figure>
     </div>
 
     <div class="story__block">
       <div class="story__text">
-        <p>The real heart of this home, though, is outdoors. The private garden is an unusually generous space for a townhouse in this part of Marbella, with mature trees for shade, landscaped planting, sun loungers and a hammock for soaking up the Andalusian sun.</p>
-        <p>A fully equipped BBQ area and an outdoor dining table make long al fresco meals effortless, and a cosy lounge corner is the perfect spot for morning coffee or an evening glass of wine — all in complete privacy, right beside your own pool.</p>
+        <p>The garden is the part guests tend to remember. Mature trees give shade, the planting is kept, and there are sun loungers and a hammock for the hours when doing nothing is the point.</p>
+        <p>An outdoor kitchen with a barbecue and a dining table make long meals outside easy, and a lounge corner takes the morning coffee and the evening glass of wine — all of it fenced, private, and beside your own water.</p>
       </div>
-      <picture>
-        <source type="image/webp" srcset="/images/story-garden-bbq-600.webp 600w, /images/story-garden-bbq.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
-        <img class="story__art" src="/images/story-garden-bbq.jpg" srcset="/images/story-garden-bbq-600.jpg 600w, /images/story-garden-bbq.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="Garden and BBQ corner" loading="lazy" width="1000" height="692">
-      </picture>
+      <figure class="story__figure">
+        <picture>
+          <source type="image/webp" srcset="/images/story-garden-bbq-600.webp 600w, /images/story-garden-bbq.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
+          <img class="story__art" src="/images/story-garden-bbq.jpg" srcset="/images/story-garden-bbq-600.jpg 600w, /images/story-garden-bbq.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="Outdoor dining table and barbecue on the terrace beside the house" loading="lazy" width="1000" height="692">
+        </picture>
+        <figcaption>Outdoor kitchen and dining terrace, off the living room</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -160,30 +245,48 @@
       <h2 id="gallery-heading">Around the house</h2>
     </div>
     <div class="gallery__grid">
-      <picture>
-        <source type="image/webp" srcset="/images/gallery-pool.webp">
-        <img src="/images/gallery-pool.jpg" alt="The private heatable pool" loading="lazy" width="700" height="484">
-      </picture>
-      <picture>
-        <source type="image/webp" srcset="/images/gallery-living-room.webp">
-        <img src="/images/gallery-living-room.jpg" alt="Living room" loading="lazy" width="700" height="484">
-      </picture>
-      <picture>
-        <source type="image/webp" srcset="/images/gallery-kitchen.webp">
-        <img src="/images/gallery-kitchen.jpg" alt="Kitchen" loading="lazy" width="700" height="484">
-      </picture>
-      <picture>
-        <source type="image/webp" srcset="/images/gallery-garden.webp">
-        <img src="/images/gallery-garden.jpg" alt="Garden with hammock and breakfast table" loading="lazy" width="700" height="484">
-      </picture>
-      <picture>
-        <source type="image/webp" srcset="/images/gallery-bedroom.webp">
-        <img src="/images/gallery-bedroom.jpg" alt="Bedroom" loading="lazy" width="700" height="484">
-      </picture>
-      <picture>
-        <source type="image/webp" srcset="/images/gallery-terrace.webp">
-        <img src="/images/gallery-terrace.jpg" alt="Rooftop terrace" loading="lazy" width="700" height="484">
-      </picture>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-pool.webp">
+          <img src="/images/gallery-pool.jpg" alt="The private pool seen along its length, with loungers on the paving" loading="lazy" width="700" height="484">
+        </picture>
+        <figcaption>Private heatable pool and garden</figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-living-room.webp">
+          <img src="/images/gallery-living-room.jpg" alt="Living room with two facing sofas and a low marble table" loading="lazy" width="700" height="484">
+        </picture>
+        <figcaption>Bright Scandinavian-style living room</figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-kitchen.webp">
+          <img src="/images/gallery-kitchen.jpg" alt="Kitchen with an island, bar stools and built-in ovens" loading="lazy" width="700" height="484">
+        </picture>
+        <figcaption>Fully equipped kitchen with island seating</figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-garden.webp">
+          <img src="/images/gallery-garden.jpg" alt="Outdoor table laid for breakfast under a parasol on the lawn" loading="lazy" width="700" height="484">
+        </picture>
+        <figcaption>Outdoor dining on the lawn</figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-bedroom.webp">
+          <img src="/images/gallery-bedroom.jpg" alt="Bedroom with twin beds pushed together and fitted wardrobes" loading="lazy" width="700" height="484">
+        </picture>
+        <figcaption>One of the four bedrooms</figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="/images/gallery-terrace.webp">
+          <img src="/images/gallery-terrace.jpg" alt="Double sun lounger on a private upper terrace" loading="lazy" width="700" height="484">
+        </picture>
+        <figcaption>Private upper terrace</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -191,23 +294,23 @@
     <div class="section-head">
       <span class="eyebrow">The area</span>
       <h2 id="area-heading">Leave the rental car behind</h2>
-      <p>Everyday life here happens on foot: supermarkets, shops and some of the area's best-known restaurants are a five-minute walk away, and Puerto Banús — its marina, boutiques and beach clubs — is about fifteen minutes on foot. Few homes in Marbella let you live this comfortably without a car.</p>
+      <p>Aldea Blanca sits in the middle of Nueva Andalucía, so a lot of the holiday happens on foot. The SuperCor supermarket and the local restaurants are an easy walk, and Puerto Banús — its marina, boutiques and beach clubs — is walkable too. The Golf Valley courses and the sandy beaches are a few minutes by car.</p>
     </div>
 
-    <div class="ruler" role="img" aria-label="Walking times: the house at 0 minutes, supermarkets and restaurants at 5 minutes, Puerto Banús at 15 minutes on foot">
+    <div class="ruler" role="img" aria-label="Distances from the house: town centre at the door, shops 1 kilometre, sandy beach 1.8 kilometres, Golf Valley 3.6 kilometres">
       <div class="ruler__track"><div class="ruler__fill" data-ruler-fill></div></div>
       <div class="ruler__points">
         <div class="ruler__point ruler__point--active ruler__point--start">
           <span class="ruler__dot"></span>
-          <span class="ruler__tag"><strong>0 min</strong>The house</span>
+          <span class="ruler__tag"><strong>0 m</strong>Town centre</span>
         </div>
         <div class="ruler__point ruler__point--mid">
           <span class="ruler__dot"></span>
-          <span class="ruler__tag"><strong>5 min</strong>Shops &amp; restaurants</span>
+          <span class="ruler__tag"><strong>1 km</strong>Shops</span>
         </div>
         <div class="ruler__point ruler__point--end">
           <span class="ruler__dot"></span>
-          <span class="ruler__tag"><strong>15 min</strong>Puerto Banús</span>
+          <span class="ruler__tag"><strong>1.8 km</strong>Sandy beach</span>
         </div>
       </div>
     </div>
@@ -215,7 +318,7 @@
     <ul class="area__stats">
       <li><strong>1.8 km</strong>Nearest sandy beach</li>
       <li><strong>3.6 km</strong>Golf Valley courses</li>
-      <li><strong>45 min</strong>Málaga Airport, by car</li>
+      <li><strong>63 km</strong>Málaga Airport</li>
     </ul>
   </section>
 
@@ -242,34 +345,75 @@
       </div>
       <ul class="rules__grid">
         <li>High-speed Wi-Fi and a smart TV</li>
-        <li>Individually controlled air conditioning and central heating</li>
-        <li>Washing machine, dryer and private parking</li>
-        <li>Gated urbanisation with an alarm system</li>
+        <li>Air conditioning throughout and central heating</li>
+        <li>Washing machine, dryer, and parking within the urbanisation</li>
+        <li>Gated urbanisation, fenced garden</li>
         <li>Families and couples only — no groups under 30, no hen or stag parties</li>
         <li>Non-smoking, no pets</li>
-        <li>Pool heating available on request, for an additional charge</li>
-        <li>If you fall outside these categories, send an enquiry and we'll do our best to arrange it</li>
+        <li>Towels and internet included; final cleaning is charged per booking</li>
       </ul>
     </div>
   </section>
 
+  <section class="faq wrap" aria-labelledby="faq-heading">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2 id="faq-heading">Before you book</h2>
+    </div>
+    <div class="faq__grid">
+      <div class="faq__item">
+        <h3>Is the pool private?</h3>
+        <p>Yes. It belongs to the house and is not shared — this is the only home in Aldea Blanca with its own pool. The urbanisation's three communal pools, one of them very large, are open to guests as well.</p>
+      </div>
+      <div class="faq__item">
+        <h3>Can the pool be heated?</h3>
+        <p>Yes, on request, for the nightly supplement shown in the rates above. Ask for it when you book so it is warm when you arrive.</p>
+      </div>
+      <div class="faq__item">
+        <h3>How many guests can stay?</h3>
+        <p>Seven, in four bedrooms — three doubles and one single — with three shower bathrooms.</p>
+      </div>
+      <div class="faq__item">
+        <h3>Is Puerto Banús walkable?</h3>
+        <p>Yes. The house is in the town itself, and Puerto Banús — the marina, the boutiques and the beach clubs — is within walking distance.</p>
+      </div>
+      <div class="faq__item">
+        <h3>Is there parking?</h3>
+        <p>Yes, there is parking within the urbanisation. Most guests find they use the car far less than they expected.</p>
+      </div>
+      <div class="faq__item">
+        <h3>Who handles the booking?</h3>
+        <p>JustRent Marbella. They hold the availability calendar, quote the price, take the payment and handle guest service.</p>
+      </div>
+      <div class="faq__item">
+        <h3>Where do I see current prices and dates?</h3>
+        <p>On the JustRent Marbella listing. The range is above; the exact price for your dates, and whether they are free, is shown there.</p>
+      </div>
+      <div class="faq__item">
+        <h3>Are parties or pets allowed?</h3>
+        <p>No. The house takes families and couples, with no groups under 30 and no hen or stag parties. It is non-smoking and pets are not accepted.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="cta wrap">
-    <h2>We look forward to welcoming you</h2>
-    <p>This private pool home brings together a prime address, genuine privacy and year-round comfort in the heart of the Costa del Sol.</p>
-    <a class="btn btn--clay" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Book now</a>
+    <h2>See if your dates are free</h2>
+    <p>Availability, the exact price for your dates and the booking itself are all handled by JustRent Marbella.</p>
+    <a class="btn btn--clay" data-justrent="footer-cta" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">View prices &amp; availability</a>
+    <p class="trust-line">Secure booking through JustRent Marbella</p>
   </section>
 
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>Aldea Blanca &middot; Nueva Andalucía, Marbella</span>
-    <a href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Book now on JustRent Marbella</a>
+    <span>Private pool townhouse &middot; Aldea Blanca, Nueva Andalucía, Marbella &middot; VUT/MA/88632</span>
+    <a data-justrent="footer-link" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Prices &amp; availability at JustRent Marbella</a>
   </div>
 </footer>
 
 <div class="mobile-book">
-  <a class="btn btn--clay" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">Book now</a>
+  <a class="btn btn--clay" data-justrent="mobile-bar" href="https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html" rel="noopener">View prices &amp; availability</a>
 </div>
 
 <script src="/js/main.js" defer></script>
