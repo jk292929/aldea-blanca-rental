@@ -1,6 +1,7 @@
-// Generates the site's raster brand assets (favicons + OG image) from pure pixel
-// math — no image libraries, no network fetch. The mark is a ripple ring, the
-// site's signature motif, echoing the house's one true rarity: a private pool.
+// Generates the site's favicon set from pure pixel math — no image libraries,
+// no network fetch. The mark is a ripple ring, the site's signature motif,
+// echoing the house's one true rarity: a private pool. The OG share image is
+// a real photo (images/og-image.jpg) and isn't touched by this script.
 // Re-run with `node scripts/generate-brand-assets.js` after changing palette below.
 
 const fs = require('fs');
@@ -120,53 +121,8 @@ function wrapICO(png32) {
   return Buffer.concat([header, entry, png32]);
 }
 
-function drawOGImage(w, h) {
-  const buf = Buffer.alloc(w * h * 4);
-  const cx = w * 0.20;
-  const cy = h * 0.5;
-  const maxR = Math.min(w, h) * 0.9;
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const dx = x - cx;
-      const dy = y - cy;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      const t = Math.min(d / maxR, 1);
-      let color = mixHex(INK, POOL_DEEP, t * 0.55);
-      const idx = (y * w + x) * 4;
-      buf[idx] = color[0];
-      buf[idx + 1] = color[1];
-      buf[idx + 2] = color[2];
-      buf[idx + 3] = 255;
-    }
-  }
-  // three ripple rings centered same as favicon, scaled to image height
-  const ringCx = w * 0.20, ringCy = h * 0.5;
-  const rings = [0.42, 0.29, 0.16].map(f => f * h * 0.9);
-  const strokeW = h * 0.012;
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const dx = x - ringCx, dy = y - ringCy;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      for (const r of rings) {
-        const rd = Math.abs(d - r);
-        if (rd < strokeW) {
-          const t = 1 - rd / strokeW;
-          const idx = (y * w + x) * 4;
-          const cur = [buf[idx], buf[idx + 1], buf[idx + 2]];
-          const mixed = mixHex(cur, POOL, Math.min(t, 1));
-          buf[idx] = mixed[0]; buf[idx + 1] = mixed[1]; buf[idx + 2] = mixed[2];
-          buf[idx + 3] = 255;
-        }
-      }
-    }
-  }
-  return buf;
-}
-
 const iconsDir = path.join(__dirname, '..', 'icons');
-const imagesDir = path.join(__dirname, '..', 'images');
 fs.mkdirSync(iconsDir, { recursive: true });
-fs.mkdirSync(imagesDir, { recursive: true });
 
 for (const size of [16, 32, 180, 512]) {
   const png = encodePNG(size, size, drawRippleMark(size));
@@ -175,7 +131,4 @@ for (const size of [16, 32, 180, 512]) {
 fs.copyFileSync(path.join(iconsDir, 'icon-180.png'), path.join(iconsDir, 'apple-touch-icon.png'));
 fs.writeFileSync(path.join(__dirname, '..', 'favicon.ico'), wrapICO(encodePNG(32, 32, drawRippleMark(32))));
 
-const og = encodePNG(1200, 630, drawOGImage(1200, 630));
-fs.writeFileSync(path.join(imagesDir, 'og-image.png'), og);
-
-console.log('Brand assets written to /icons, /images, and /favicon.ico');
+console.log('Favicon set written to /icons and /favicon.ico');

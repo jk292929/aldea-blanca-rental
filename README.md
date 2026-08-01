@@ -17,9 +17,21 @@ index.html          the page
 css/style.css        all styles (design tokens at the top)
 js/main.js           one small progressive enhancement (walk-time ruler fill)
 icons/, favicon.*    brand mark (ripple rings) — see scripts/generate-brand-assets.js
-images/og-image.png  social share image
+images/og-image.jpg  social share image (real photo, not generated)
 robots.txt, sitemap.xml
 ```
+
+## Things that live in more than one place
+
+Plain HTML has no shared constants, so these are duplicated on purpose —
+grep before changing either one so all copies move together:
+
+- **Booking link** (`https://www.justrentmarbella.com/...`) — 5 places in
+  `index.html`. `grep -n justrentmarbella.com index.html` to find them, or
+  `sed -i '' 's#OLD_URL#NEW_URL#g' index.html` to replace all at once.
+- **Coordinates** (`36.4897, -4.96301`) — the JSON-LD `geo` block and the
+  OpenStreetMap `iframe` `src` in the location section both encode the same
+  point. `grep -n "36.4897\|4.96301" index.html`.
 
 ## Replacing a photo
 
@@ -31,11 +43,11 @@ anything below the hero, and match `width`/`height` attributes to the new
 file to avoid layout shift. The hero image is the only one that loads
 eagerly (`fetchpriority="high"`, no `loading="lazy"`).
 
-## Regenerating brand assets
+## Regenerating the favicon set
 
-`scripts/generate-brand-assets.js` draws the favicon set, `favicon.ico` and
-the OG image from pure pixel math — no image libraries, no downloads. Edit
-the palette constants at the top and re-run:
+`scripts/generate-brand-assets.js` draws `icons/*.png` and `favicon.ico`
+from pure pixel math — no image libraries, no downloads. Edit the palette
+constants at the top and re-run:
 
 ```bash
 node scripts/generate-brand-assets.js

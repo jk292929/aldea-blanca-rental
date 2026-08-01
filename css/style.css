@@ -121,7 +121,7 @@ a:focus-visible, button:focus-visible {
   border-radius: 2px;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
-.site-header .book-link:hover { border-color: var(--pool-bright); background: rgba(76, 156, 147, 0.15); }
+.site-header .book-link:hover { border-color: var(--pool-bright); background: color-mix(in srgb, var(--pool-bright) 15%, transparent); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -147,8 +147,8 @@ a:focus-visible, button:focus-visible {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(120% 90% at 14% 30%, rgba(76, 156, 147, 0.3), transparent 60%),
-    linear-gradient(180deg, rgba(22, 33, 29, 0.55) 0%, rgba(27, 38, 34, 0.72) 45%, rgba(27, 38, 34, 0.93) 100%);
+    radial-gradient(120% 90% at 14% 30%, color-mix(in srgb, var(--pool-bright) 30%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--ink) 55%, transparent) 0%, color-mix(in srgb, var(--ink) 72%, transparent) 45%, color-mix(in srgb, var(--ink) 93%, transparent) 100%);
 }
 .hero__rings {
   position: absolute;
