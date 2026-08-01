@@ -87,11 +87,12 @@
 
   <section class="hero">
     <picture>
-      <!-- A phone is about 0.48:1. Letting it crop the landscape frame leaves a
-           narrow strip with the pool cut out of it, so portrait screens get a
-           frame cropped for them, with the pool kept in shot. -->
-      <source media="(max-aspect-ratio: 3/4)" type="image/webp" srcset="/images/hero-pool-portrait.webp">
-      <source media="(max-aspect-ratio: 3/4)" srcset="/images/hero-pool-portrait.jpg">
+      <!-- Portrait screens get their own frame: cover would otherwise throw the
+           pool out of a 0.48:1 phone. Recropping moves the 3/4 and both widths
+           here with it, and the <img> below describes only the landscape frame
+           — see "Replacing a photo" in README. -->
+      <source media="(max-aspect-ratio: 3/4)" type="image/webp" srcset="/images/hero-pool-portrait.webp" width="700" height="900">
+      <source media="(max-aspect-ratio: 3/4)" srcset="/images/hero-pool-portrait.jpg" width="700" height="900">
       <source type="image/webp" srcset="/images/hero-pool-900.webp 900w, /images/hero-pool.webp 1300w" sizes="100vw">
       <img class="hero__photo" src="/images/hero-pool.jpg" srcset="/images/hero-pool-900.jpg 900w, /images/hero-pool.jpg 1300w" sizes="100vw" alt="The house, garden and private heatable pool" width="1300" height="900" fetchpriority="high">
     </picture>

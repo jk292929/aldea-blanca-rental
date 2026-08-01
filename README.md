@@ -99,6 +99,28 @@ below the hero, and match `width`/`height` on the `<img>` to the *full*
 size to avoid layout shift. The hero is the only image that loads eagerly
 (`fetchpriority="high"`, no `loading="lazy"`).
 
+**The hero ships a third file: a portrait crop.** A phone is around
+0.48:1 and the landscape frame is 1.44:1, so `object-fit: cover` throws
+away most of the width — and the pool, which is the entire reason anyone
+is on this page, goes with it. `hero-pool-portrait.jpg/.webp` is a
+700×900 crop that keeps the house and the water in shot, served by a
+`<source media="(max-aspect-ratio: 3/4)">` ahead of the landscape ones.
+
+Three things move together if you recrop it, and nothing enforces the
+link: the crop's own dimensions, the `width`/`height` on both portrait
+`<source>` elements, and the `3/4` threshold, which is set just under the
+crop's 0.78 so the file is only served to screens narrower than itself.
+
+```bash
+sips -c 900 700 images/hero-pool-portrait.jpg     # centre crop, H then W
+cwebp -q 74 images/hero-pool-portrait.jpg -o images/hero-pool-portrait.webp
+```
+
+The hero scrim is tuned against this photograph — it stays light over the
+top of the frame so the house and water read, and only darkens where the
+words are. Swap the hero for a differently-lit picture and the gradient
+stops in `.hero__scrim` need looking at again, at a phone size.
+
 **Pick the small width against device pixel ratio, not viewport width.**
 A 390 px phone at DPR 2 asks for 780 px, so a 700 px variant is never
 chosen — the browser skips it and takes the full desktop file instead.

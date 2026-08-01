@@ -191,9 +191,12 @@ a:focus-visible, button:focus-visible {
   padding: 7rem var(--gutter) 4.5rem;
   display: grid;
   gap: 2.5rem;
-  /* A photograph is not a flat backdrop: the headline crosses a white wall,
-     a shadowed doorway and finally the water. The scrim alone cannot cover
-     every one of those, so the type carries a little shadow of its own. */
+}
+/* The headline crosses a white wall, a dark doorway and then water; the scrim
+   alone cannot cover all three. Only type on the photograph gets a shadow —
+   the button and trust line have their own fills to read against. */
+.hero__title,
+.hero__thesis {
   text-shadow: 0 1px 18px color-mix(in srgb, var(--ink) 55%, transparent);
 }
 /* Teal reads well on the page's solid backgrounds but disappears against a
