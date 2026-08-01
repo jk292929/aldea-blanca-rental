@@ -75,7 +75,10 @@
 <main id="main">
 
   <section class="hero">
-    <img class="hero__photo" src="/images/hero-pool.jpg" alt="The house, garden and private heatable pool" width="1300" height="900" fetchpriority="high">
+    <picture>
+      <source type="image/webp" srcset="/images/hero-pool-700.webp 700w, /images/hero-pool.webp 1300w" sizes="100vw">
+      <img class="hero__photo" src="/images/hero-pool.jpg" srcset="/images/hero-pool-700.jpg 700w, /images/hero-pool.jpg 1300w" sizes="100vw" alt="The house, garden and private heatable pool" width="1300" height="900" fetchpriority="high">
+    </picture>
     <div class="hero__scrim" aria-hidden="true"></div>
     <svg class="hero__rings" viewBox="0 0 200 200" aria-hidden="true">
       <circle cx="100" cy="100" r="90"/>
@@ -118,7 +121,10 @@
         <p>Set in Aldea Blanca, one of the most sought-after urbanisations in Nueva Andalucía, this home offers something remarkably rare for the area: its own private swimming pool, which can be heated on request so it's a pleasure to enjoy all year round. Guests also have access to three further communal pools within the urbanisation.</p>
         <p>Combine that with a large 585 m² plot and calm, minimalist Scandinavian interiors, and you have a private retreat just minutes from Puerto Banús and Marbella's finest beaches.</p>
       </div>
-      <img class="story__art" src="/images/story-pool-terrace.jpg" alt="The private pool and terrace" loading="lazy" width="1000" height="692">
+      <picture>
+        <source type="image/webp" srcset="/images/story-pool-terrace-600.webp 600w, /images/story-pool-terrace.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
+        <img class="story__art" src="/images/story-pool-terrace.jpg" srcset="/images/story-pool-terrace-600.jpg 600w, /images/story-pool-terrace.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="The private pool and terrace" loading="lazy" width="1000" height="692">
+      </picture>
     </div>
 
     <div class="story__block story__block--reverse">
@@ -126,7 +132,10 @@
         <p>Step inside and you are greeted by a spacious, open-plan living and dining area, full of natural light and furnished with clean lines, muted tones and natural materials. The space flows into a fully equipped kitchen with a sleek island and high-end appliances — everything you need to cook properly rather than just get by.</p>
         <p>Across 180 m² of interior space, the house sleeps up to seven guests in four bedrooms — three doubles and one single — and three modern shower bathrooms, with luxurious Scandinavian finishes throughout.</p>
       </div>
-      <img class="story__art" src="/images/story-living-kitchen.jpg" alt="Open-plan living and dining area" loading="lazy" width="1000" height="692">
+      <picture>
+        <source type="image/webp" srcset="/images/story-living-kitchen-600.webp 600w, /images/story-living-kitchen.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
+        <img class="story__art" src="/images/story-living-kitchen.jpg" srcset="/images/story-living-kitchen-600.jpg 600w, /images/story-living-kitchen.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="Open-plan living and dining area" loading="lazy" width="1000" height="692">
+      </picture>
     </div>
 
     <div class="story__block">
@@ -134,7 +143,10 @@
         <p>The real heart of this home, though, is outdoors. The private garden is an unusually generous space for a townhouse in this part of Marbella, with mature trees for shade, landscaped planting, sun loungers and a hammock for soaking up the Andalusian sun.</p>
         <p>A fully equipped BBQ area and an outdoor dining table make long al fresco meals effortless, and a cosy lounge corner is the perfect spot for morning coffee or an evening glass of wine — all in complete privacy, right beside your own pool.</p>
       </div>
-      <img class="story__art" src="/images/story-garden-bbq.jpg" alt="Garden and BBQ corner" loading="lazy" width="1000" height="692">
+      <picture>
+        <source type="image/webp" srcset="/images/story-garden-bbq-600.webp 600w, /images/story-garden-bbq.webp 1000w" sizes="(min-width: 860px) 50vw, 100vw">
+        <img class="story__art" src="/images/story-garden-bbq.jpg" srcset="/images/story-garden-bbq-600.jpg 600w, /images/story-garden-bbq.jpg 1000w" sizes="(min-width: 860px) 50vw, 100vw" alt="Garden and BBQ corner" loading="lazy" width="1000" height="692">
+      </picture>
     </div>
   </section>
 
@@ -148,12 +160,30 @@
       <h2 id="gallery-heading">Around the house</h2>
     </div>
     <div class="gallery__grid">
-      <img src="/images/gallery-pool.jpg" alt="The private heatable pool" loading="lazy" width="700" height="484">
-      <img src="/images/gallery-living-room.jpg" alt="Living room" loading="lazy" width="700" height="484">
-      <img src="/images/gallery-kitchen.jpg" alt="Kitchen" loading="lazy" width="700" height="484">
-      <img src="/images/gallery-garden.jpg" alt="Garden with hammock and breakfast table" loading="lazy" width="700" height="484">
-      <img src="/images/gallery-bedroom.jpg" alt="Bedroom" loading="lazy" width="700" height="484">
-      <img src="/images/gallery-terrace.jpg" alt="Rooftop terrace" loading="lazy" width="700" height="484">
+      <picture>
+        <source type="image/webp" srcset="/images/gallery-pool.webp">
+        <img src="/images/gallery-pool.jpg" alt="The private heatable pool" loading="lazy" width="700" height="484">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/gallery-living-room.webp">
+        <img src="/images/gallery-living-room.jpg" alt="Living room" loading="lazy" width="700" height="484">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/gallery-kitchen.webp">
+        <img src="/images/gallery-kitchen.jpg" alt="Kitchen" loading="lazy" width="700" height="484">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/gallery-garden.webp">
+        <img src="/images/gallery-garden.jpg" alt="Garden with hammock and breakfast table" loading="lazy" width="700" height="484">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/gallery-bedroom.webp">
+        <img src="/images/gallery-bedroom.jpg" alt="Bedroom" loading="lazy" width="700" height="484">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/gallery-terrace.webp">
+        <img src="/images/gallery-terrace.jpg" alt="Rooftop terrace" loading="lazy" width="700" height="484">
+      </picture>
     </div>
   </section>
 

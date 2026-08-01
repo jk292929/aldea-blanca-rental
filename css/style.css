@@ -10,8 +10,8 @@
   --ink-soft: #263530;
   --pool: #2e6e68;
   --pool-bright: #4c9c93;
-  --clay: #b5613a;
-  --clay-dark: #954f2f;
+  --clay: #9c5332;
+  --clay-dark: #7c4227;
   --line: #dcd2bc;
   --line-dark: rgba(255, 255, 255, 0.14);
   --ink-text: #24231f;
@@ -326,6 +326,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 0.9rem;
 }
+.gallery__grid picture,
 .gallery__grid img {
   aspect-ratio: 4 / 3;
   border-radius: 3px;
@@ -460,8 +461,8 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
-  opacity: 0.75;
 }
+.site-footer span { color: color-mix(in srgb, var(--sand) 75%, transparent); }
 .site-footer a { color: var(--pool-bright); }
 
 /* ---------- Sticky mobile book bar ---------- */

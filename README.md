@@ -36,12 +36,25 @@ grep before changing either one so all copies move together:
 ## Replacing a photo
 
 `images/` holds the real photography (hero, three story shots, six gallery
-shots, and the social-share `og-image.jpg`), optimised with `sips` — see
-each file's dimensions before replacing so the new one matches (`sips -g
-pixelWidth -g pixelHeight images/<file>.jpg`). Keep `loading="lazy"` on
-anything below the hero, and match `width`/`height` attributes to the new
-file to avoid layout shift. The hero image is the only one that loads
-eagerly (`fetchpriority="high"`, no `loading="lazy"`).
+shots, and the social-share `og-image.jpg`), optimised with `sips`. The
+hero and the three story photos each ship two sizes — a full one and a
+`-600`/`-700` mobile one — plus a `.webp` sibling of every JPEG, all
+wired up via `<picture>`/`srcset` (see any of them in `index.html` as a
+template). Regenerate a replacement the same way:
+
+```bash
+sips -Z 1000 -s format jpeg -s formatOptions 65 images/story-x.jpg   # full size
+sips -Z 600  -s format jpeg -s formatOptions 65 images/story-x-600.jpg
+cwebp -q 72 images/story-x.jpg -o images/story-x.webp
+cwebp -q 72 images/story-x-600.jpg -o images/story-x-600.webp
+```
+
+`cwebp` comes from `brew install webp`. Keep `loading="lazy"` on anything
+below the hero, and match `width`/`height` on the `<img>` to the *full*
+size to avoid layout shift. The hero is the only image that loads eagerly
+(`fetchpriority="high"`, no `loading="lazy"`). The six gallery photos are
+single-size (700w) — small and below-the-fold enough that a mobile variant
+isn't worth the added complexity.
 
 ## Regenerating the favicon set
 
