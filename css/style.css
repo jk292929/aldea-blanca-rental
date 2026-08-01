@@ -142,13 +142,23 @@ a:focus-visible, button:focus-visible {
   height: 100%;
   object-fit: cover;
 }
+/* The photograph is the argument — the pool is the whole reason to book — so
+   the scrim earns its darkness only where words sit on top of it. The top half
+   is left alone; the ramp starts below it and lands dark enough to carry the
+   headline. Changing these stops changes legibility, so check the hero at a
+   phone size afterwards, not just on a desktop. */
 .hero__scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    radial-gradient(120% 90% at 14% 30%, color-mix(in srgb, var(--pool-bright) 30%, transparent), transparent 60%),
-    linear-gradient(180deg, color-mix(in srgb, var(--ink) 55%, transparent) 0%, color-mix(in srgb, var(--ink) 72%, transparent) 45%, color-mix(in srgb, var(--ink) 93%, transparent) 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--ink) 6%, transparent) 0%,
+    color-mix(in srgb, var(--ink) 24%, transparent) 20%,
+    color-mix(in srgb, var(--ink) 46%, transparent) 44%,
+    color-mix(in srgb, var(--ink) 58%, transparent) 68%,
+    color-mix(in srgb, var(--ink) 68%, transparent) 100%
+  );
 }
 .hero__rings {
   position: absolute;
@@ -181,8 +191,20 @@ a:focus-visible, button:focus-visible {
   padding: 7rem var(--gutter) 4.5rem;
   display: grid;
   gap: 2.5rem;
+  /* A photograph is not a flat backdrop: the headline crosses a white wall,
+     a shadowed doorway and finally the water. The scrim alone cannot cover
+     every one of those, so the type carries a little shadow of its own. */
+  text-shadow: 0 1px 18px color-mix(in srgb, var(--ink) 55%, transparent);
 }
-.hero__eyebrow { color: var(--pool-bright); margin-bottom: 1rem; }
+/* Teal reads well on the page's solid backgrounds but disappears against a
+   sunlit white wall, which is exactly what sits behind it in the photograph.
+   Here the eyebrow goes light and carries a tighter shadow of its own —
+   small type needs a harder edge than the headline does. */
+.hero__eyebrow {
+  color: var(--sand);
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 85%, transparent);
+}
 .hero__title {
   font-family: var(--font-display);
   font-weight: 800;
