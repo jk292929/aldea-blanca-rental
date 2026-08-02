@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
-# Rebuilds every photo in images/ from a folder of originals.
+# Rebuilds every photo in images/ from the originals in photos-original/.
 #
-#   ./scripts/optimise-photos.sh ~/path/to/originals
+#   ./scripts/optimise-photos.sh                 # the usual case
+#   ./scripts/optimise-photos.sh ~/other/folder  # a different set
 #
-# The originals are the full-size files from the JustRent Marbella listing
-# (see README, "Facts, and where they came from"); they are deliberately not
-# committed. Re-run this whenever a photo is replaced so the whole set keeps
-# one look and one compression standard.
+# The originals are committed alongside the site on purpose. They are only a
+# few megabytes, and without them this script is dead weight — the derived
+# files in images/ cannot be regenerated from themselves without compounding
+# the grade and the compression. Re-run this whenever a photo is replaced so
+# the whole set keeps one look and one standard.
 #
 # Needs: sips (macOS), and `brew install imagemagick webp`.
 set -euo pipefail
 
-SRC="${1:?usage: optimise-photos.sh <source-photo-dir>}"
+SRC="${1:-$(cd "$(dirname "$0")/.." && pwd)/photos-original}"
+[ -d "$SRC" ] || { echo "No such photo folder: $SRC" >&2; exit 1; }
 DEST="$(cd "$(dirname "$0")/.." && pwd)/images"
 mkdir -p "$DEST"
 

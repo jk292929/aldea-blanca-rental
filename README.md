@@ -47,6 +47,39 @@ FAQ structured data is also deliberately absent: Google restricted FAQ
 rich results to government and health sites in 2023, so it would earn
 nothing while adding a second copy of every answer to keep in sync.
 
+## Decisions that look like mistakes
+
+Each of these was chosen on purpose and will look wrong to someone
+arriving fresh. Read the reason before "fixing" one.
+
+**"Heated pool", not "heatable".** The pool is only heated when a guest
+asks and pays €50 a night, so "heatable" is the literally precise word —
+and nobody writes it. The market and the search box both say "heated
+pool". The page uses "heated" for findability and keeps the qualifier
+next to it every time: the line under the headline says "heated on
+request", the rates block gives the price, and the FAQ answers it
+outright. The pool is never called heated without saying on whose
+request. Keep both halves of that bargain.
+
+**No FAQ structured data.** Google restricted FAQ rich results to
+government and health sites in 2023. Adding the markup would earn nothing
+and create a second copy of every answer to keep in sync with the visible
+text.
+
+**Prices appear more than once, deliberately.** Plain HTML has no
+variables. Rather than invent an indirection, the count is kept to a
+minimum and written down under "Things that live in more than one place".
+
+**Rates sit low on the page, not under the hero.** Price second is what a
+booking portal does. This page is meant to seduce first — photographs,
+the area, the house — and cost later, when an interested reader actually
+wants the number.
+
+**No analytics events are consumed.** `click_to_justrent` fires into
+`dataLayer` and nothing listens. That is the finished state, not an
+unfinished one: it costs nothing, and the day a tag manager is added the
+events are already wired. See "Measurement".
+
 ## Things that live in more than one place
 
 Plain HTML has no shared constants, so these are duplicated on purpose —
