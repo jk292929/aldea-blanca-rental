@@ -233,7 +233,6 @@ a:focus-visible, button:focus-visible {
   justify-content: space-between;
   gap: 2rem;
 }
-.hero__cta { display: grid; gap: 0.7rem; justify-items: start; }
 
 /* Quiet reassurance under a call to action — never competes with it. */
 .trust-line {
