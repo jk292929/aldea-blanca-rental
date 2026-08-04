@@ -16,47 +16,18 @@
 'use strict';
 
 const { notify } = require('../../_shared/notify');
+const { fetchPageviews } = require('../../_shared/cloudflare-analytics');
+const { ACCOUNT, SITE_TAG } = require('../../_shared/site-visits');
 
-const ACCOUNT = '5d719000fd183207a2ee799f7d5e75f7';
-const SITE_TAG = '8073e399297e46fb8ff92f721b012050';
 const SITE_URL = 'https://aldeablancarental.com/';
 const PREFIX = '[aldeablanca-weekly]';
 
 const isoDay = (daysAgo) =>
   new Date(Date.now() - daysAgo * 86400000).toISOString().slice(0, 10);
 
-async function graphql(query) {
-  const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.CLOUDFLARE_ANALYTICS_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query }),
-  });
-  const json = await res.json();
-  if (json.errors?.length) throw new Error(JSON.stringify(json.errors).slice(0, 300));
-  return json.data.viewer.accounts[0];
-}
-
 /** Page loads in a window, plus the referrer breakdown for the same window. */
 async function windowStats(fromDay, toDay) {
-  const filter = `{ siteTag: "${SITE_TAG}", date_geq: "${fromDay}", date_lt: "${toDay}" }`;
-  const data = await graphql(`{
-    viewer { accounts(filter: { accountTag: "${ACCOUNT}" }) {
-      total: rumPageloadEventsAdaptiveGroups(limit: 1, filter: ${filter}) { count }
-      byReferer: rumPageloadEventsAdaptiveGroups(
-        limit: 6, filter: ${filter}, orderBy: [count_DESC]
-      ) { count dimensions { refererHost } }
-    } }
-  }`);
-  return {
-    count: data.total[0]?.count ?? 0,
-    referers: data.byReferer.map((g) => ({
-      host: g.dimensions.refererHost || 'direkt',
-      count: g.count,
-    })),
-  };
+  return fetchPageviews({ account: ACCOUNT, siteTag: SITE_TAG, token: process.env.CLOUDFLARE_ANALYTICS_TOKEN, fromDay, toDay });
 }
 
 /** "12 (+5)" / "12 (-3)" / "12 (oforandrat)" — the trend is the point, not the number. */
