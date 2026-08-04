@@ -16,14 +16,11 @@
 'use strict';
 
 const { notify } = require('../../_shared/notify');
-const { fetchPageviews } = require('../../_shared/cloudflare-analytics');
+const { fetchPageviews, isoDay } = require('../../_shared/cloudflare-analytics');
 const { ACCOUNT, SITE_TAG } = require('../../_shared/site-visits');
 
 const SITE_URL = 'https://aldeablancarental.com/';
 const PREFIX = '[aldeablanca-weekly]';
-
-const isoDay = (daysAgo) =>
-  new Date(Date.now() - daysAgo * 86400000).toISOString().slice(0, 10);
 
 /** Page loads in a window, plus the referrer breakdown for the same window. */
 async function windowStats(fromDay, toDay) {
