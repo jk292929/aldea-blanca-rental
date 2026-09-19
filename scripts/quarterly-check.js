@@ -22,9 +22,17 @@ const SITE = 'https://aldeablancarental.com/';
 const LISTING = 'https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 const PREFIX = '[aldeablanca-check]';
+const { runScript } = require('../../_shared/script-runtime');
 
 async function fetchText(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA }, redirect: 'follow' });
+  // 30 s per hämtning. Utan signal finns i praktiken inget tak: mätt 2026-09-06 hängde
+  // en fetch mot en server som skickar halva headers och sedan tystnar i ÖVER 60 s utan
+  // att kasta (mätningen avbröts där, så det verkliga taket är okänt men längre än så).
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA },
+    redirect: 'follow',
+    signal: AbortSignal.timeout(30_000),
+  });
   if (!res.ok) throw new Error(`${url} svarade ${res.status}`);
   return res.text();
 }
@@ -52,7 +60,7 @@ function siteRange(html) {
   return m ? { low: Number(m[1]), high: Number(m[2]) } : null;
 }
 
-(async () => {
+runScript({ name: 'aldeablanca-quarterly', timeoutMs: 10 * 60_000, run: async () => {
   let site, listing;
   try {
     [site, listing] = await Promise.all([fetchText(SITE), fetchText(LISTING)]);
@@ -61,8 +69,8 @@ function siteRange(html) {
     await notify({
       audience: 'joachim',
       level: 'hushall',
-      title: 'Aldea Blanca: kollen nadde inte fram',
-      body: 'Kvartalskollen kunde inte lasa sajten eller JustRents listning.\nKolla priserna for hand nasta gang du har en stund.',
+      title: 'Aldea Blanca: kollen nådde inte fram',
+      body: 'Kvartalskollen kunde inte läsa sajten eller JustRents listning.\nKolla priserna för hand nästa gång du har en stund.',
       click: LISTING,
       project: 'AldeaBlancaRental',
     });
@@ -83,7 +91,7 @@ function siteRange(html) {
       audience: 'joachim',
       level: 'hushall',
       title: 'Aldea Blanca: hittar inte priset',
-      body: 'Kvartalskollen kanner inte igen prisformatet langre, nagon av sidorna har byggts om.\nJamfor sajtens intervall med JustRents pristabell.',
+      body: 'Kvartalskollen känner inte igen prisformatet längre, någon av sidorna har byggts om.\nJämför sajtens intervall med JustRents pristabell.',
       click: LISTING,
       project: 'AldeaBlancaRental',
     });
@@ -93,17 +101,16 @@ function siteRange(html) {
   const same = claimed.low === actual.low && claimed.high === actual.high;
   console.log(`${PREFIX} sajten: ${claimed.low}-${claimed.high}, JustRent: ${actual.low}-${actual.high}`);
 
+  // Priserna stämmer = inget att göra → ingen push (docs/notiser.md: ljuder det
+  // måste Joachim agera). Loggraden ovan bär kvittot; bara en avvikelse väcker.
+  if (same) return;
+
   await notify({
     audience: 'joachim',
-    level: same ? 'klart' : 'beslut',
-    title: same ? 'Aldea Blanca: priserna stammer' : 'Aldea Blanca: priset har andrats',
-    body: same
-      ? `Sajten och JustRent sager bada ${claimed.low}-${claimed.high} euro per natt.\nInget behover goras.`
-      : `Sajten sager ${claimed.low}-${claimed.high} euro, JustRent sager ${actual.low}-${actual.high}.\nBe Claude uppdatera prisblocket och pusha.`,
-    click: same ? SITE : LISTING,
+    level: 'beslut',
+    title: 'Aldea Blanca: priset har ändrats',
+    body: `Sajten säger ${claimed.low}-${claimed.high} euro, JustRent säger ${actual.low}-${actual.high}.\nBe Claude uppdatera prisblocket och pusha.`,
+    click: LISTING,
     project: 'AldeaBlancaRental',
   });
-})().catch((err) => {
-  console.error(`${PREFIX} ovantat fel:`, err);
-  process.exit(1);
-});
+} });

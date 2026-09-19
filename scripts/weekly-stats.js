@@ -18,6 +18,7 @@
 const { notify } = require('../../_shared/notify');
 const { fetchPageviews, isoDay } = require('../../_shared/cloudflare-analytics');
 const { ACCOUNT, SITE_TAG } = require('../../_shared/site-visits');
+const { runScript } = require('../../_shared/script-runtime');
 
 const SITE_URL = 'https://aldeablancarental.com/';
 const PREFIX = '[aldeablanca-weekly]';
@@ -27,21 +28,21 @@ async function windowStats(fromDay, toDay) {
   return fetchPageviews({ account: ACCOUNT, siteTag: SITE_TAG, token: process.env.CLOUDFLARE_ANALYTICS_TOKEN, fromDay, toDay });
 }
 
-/** "12 (+5)" / "12 (-3)" / "12 (oforandrat)" — the trend is the point, not the number. */
+/** "12 (+5)" / "12 (-3)" / "12 (oförändrat)" — the trend is the point, not the number. */
 function withTrend(now, before) {
   const diff = now - before;
-  if (diff === 0) return `${now} (ofor'andrat)`.replace("'", '');
+  if (diff === 0) return `${now} (oförändrat)`;
   return `${now} (${diff > 0 ? '+' : ''}${diff})`;
 }
 
-(async () => {
+runScript({ name: 'aldeablanca-weekly', timeoutMs: 10 * 60_000, run: async () => {
   if (!process.env.CLOUDFLARE_ANALYTICS_TOKEN) {
     console.error(`${PREFIX} CLOUDFLARE_ANALYTICS_TOKEN saknas i miljon`);
     await notify({
       audience: 'joachim',
       level: 'hushall',
       title: 'Aldea Blanca: saknar API-nyckel',
-      body: 'Veckorapporten kom inte at Cloudflare, nyckeln saknas i miljon.\nKontrollera CLOUDFLARE_ANALYTICS_TOKEN i .zshenv.',
+      body: 'Veckorapporten kom inte åt Cloudflare, nyckeln saknas i miljön.\nKontrollera CLOUDFLARE_ANALYTICS_TOKEN i .zshenv.',
       project: 'AldeaBlancaRental',
     });
     process.exit(0);
@@ -59,7 +60,7 @@ function withTrend(now, before) {
       audience: 'joachim',
       level: 'hushall',
       title: 'Aldea Blanca: statistiken uteblev',
-      body: 'Veckorapporten kunde inte lasa Cloudflare den har gangen.\nSajten paverkas inte, kollen forsoker igen nasta mandag.',
+      body: 'Veckorapporten kunde inte läsa Cloudflare den här gången.\nSajten påverkas inte, kollen försöker igen nästa måndag.',
       click: SITE_URL,
       project: 'AldeaBlancaRental',
     });
@@ -75,15 +76,14 @@ function withTrend(now, before) {
 
   console.log(`${PREFIX} ${thisWeek.count} besok (forra veckan ${lastWeek.count})`);
 
+  // Ren lägesrapport, inget att göra → `samlas`: ingen egen push, raden står i
+  // tisdagens Dagens plan (_shared/notify-digest.js).
   await notify({
     audience: 'joachim',
-    level: 'klart',
+    level: 'samlas',
     title: 'Aldea Blanca: veckans trafik',
-    body: `${withTrend(thisWeek.count, lastWeek.count)} sidvisningar senaste sju dagarna.\n${sources ? `Storsta kallor: ${sources}.` : 'Ingen hanvisande kalla den har veckan.'}`,
+    body: `${withTrend(thisWeek.count, lastWeek.count)} sidvisningar senaste sju dagarna.\n${sources ? `Största källor: ${sources}.` : 'Ingen hänvisande källa den här veckan.'}`,
     click: SITE_URL,
     project: 'AldeaBlancaRental',
   });
-})().catch((err) => {
-  console.error(`${PREFIX} ovantat fel:`, err);
-  process.exit(1);
-});
+} });
