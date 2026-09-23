@@ -19,8 +19,13 @@ js/main.js           one small progressive enhancement (walk-time ruler fill)
 icons/, favicon.*    brand mark (ripple rings) — see scripts/generate-brand-assets.js
 images/og-image.jpg  social share image (real photo, not generated)
 robots.txt, sitemap.xml
+llms.txt             plain-language facts for AI crawlers/agents (llmstxt.org
+                     convention) — a third copy of the key facts, see below
 _headers             Cloudflare cache-control rules (images/css/js) — Workers
                      Static Assets default to max-age=0 otherwise
+scripts/check-static-facts.js
+                     run by hand after touching the FAQ, price, geo or core
+                     facts — checks the copies below all still agree
 ```
 
 ## Facts, and where they came from
@@ -41,11 +46,8 @@ and parking that is **within the urbanisation, not private to the house**.
 
 Deliberately absent: reviews, ratings, review/rating structured data, a
 floor plan. The only reviews that exist are on Airbnb and republishing
-them has not been cleared.
-
-FAQ structured data is also deliberately absent: Google restricted FAQ
-rich results to government and health sites in 2023, so it would earn
-nothing while adding a second copy of every answer to keep in sync.
+them has not been cleared — do not add `Review`/`AggregateRating` markup
+without a real, licensed source; never invent or estimate a rating.
 
 ## Decisions that look like mistakes
 
@@ -61,10 +63,17 @@ request", the rates block gives the price, and the FAQ answers it
 outright. The pool is never called heated without saying on whose
 request. Keep both halves of that bargain.
 
-**No FAQ structured data.** Google restricted FAQ rich results to
-government and health sites in 2023. Adding the markup would earn nothing
-and create a second copy of every answer to keep in sync with the visible
-text.
+**FAQ structured data was added back on 2026-09-23, on purpose, after
+being deliberately left out.** Google restricted the FAQ *rich snippet*
+to government and health sites in 2023, so on Google itself this markup
+still earns nothing. It was added anyway because the audience changed:
+AI answer engines and browsing agents (ChatGPT, Perplexity, Claude, Bing
+Copilot, Google AI Overviews) parse `FAQPage` JSON-LD directly regardless
+of whether Google renders a rich snippet for it, and this page's whole
+job is to be found and quoted correctly by exactly those systems. The
+`mainEntity` text in `index.html` is a byte-for-byte copy of the visible
+`.faq__item` text — grep `<h3>` inside `.faq__grid` before changing a
+question, and update both copies together.
 
 **Prices appear more than once, deliberately.** Plain HTML has no
 variables. Rather than invent an indirection, the count is kept to a
@@ -95,6 +104,23 @@ grep before changing either one so all copies move together:
   in the JSON-LD `priceRange`. The other two prices (`€50`, `€360`) appear
   exactly once each, in the rates list; the FAQ refers to them in words on
   purpose so there is nothing to keep in sync. `grep -n "€" index.html`.
+- **The FAQ answers** — once as visible `.faq__item` text, once as
+  `FAQPage` JSON-LD `acceptedAnswer.text` in the same file, byte-for-byte
+  identical. `grep -n "acceptedAnswer\|<h3>" index.html`.
+- **The core facts** (bedrooms, m², price range, distances, coordinates,
+  booking link) are also restated in prose in `llms.txt`. Update every
+  copy together.
+
+Run `node scripts/check-static-facts.js` after touching any of these — it
+reads the file straight off disk (no network, no build step) and checks
+that every copy above still agrees: both JSON-LD blocks parse, the FAQ
+schema is byte-for-byte identical to the visible FAQ, the price range and
+coordinates match between the heading/map and the JSON-LD, and the core
+facts in `llms.txt` match the JSON-LD. It only checks what is *inside this
+repo* — the quarterly price check against the live JustRent listing is a
+separate, already-existing job (`scripts/quarterly-check.js`, notifies on
+drift). Exits non-zero and prints exactly which copy disagreed with which,
+so a broken check is never silent.
 
 ## Measurement
 

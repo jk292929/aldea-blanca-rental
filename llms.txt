@@ -1,0 +1,26 @@
+# Aldea Blanca Rental
+
+> Four-bedroom townhouse in Aldea Blanca, Nueva Andalucía, Marbella — the only home in the urbanisation with its own private heated pool. Sleeps 7, 180 m² interior on a 585 m² plot, walking distance to Puerto Banús. Booked through JustRent Marbella, not directly on this site.
+
+This page describes one property. It has no other pages, no blog and no availability calendar of its own — current prices and dates live on the JustRent Marbella listing linked below.
+
+## Key facts
+
+- Location: Aldea Blanca, Nueva Andalucía, Marbella, Spain (29660). Coordinates 36.4897, -4.96301.
+- 4 bedrooms (3 double, 1 single), 3 shower bathrooms, sleeps 7.
+- 180 m² interior, 585 m² plot.
+- Private heated pool (heating is a paid, on-request supplement — the pool itself is not heated by default).
+- Rates: €271–€714 per night, VAT included, depending on season. Pool heating €50/night. Final cleaning €360/booking.
+- Registered tourist accommodation: VUT/MA/88632.
+- Distances: sandy beach 1.8 km, Golf Valley golf courses 3.6 km, Málaga Airport 63 km. Puerto Banús is walkable.
+- House rules: families and couples only, no groups under 30, no hen or stag parties, non-smoking, no pets.
+- Booking, pricing and availability are handled entirely by JustRent Marbella: https://www.justrentmarbella.com/rentals/terraced-house-nueva-andalucia-casa-blanca-mar-504092.html
+
+## Pages
+
+- [Home](https://aldeablancarental.com/): full property description, photos, area guide, rates and FAQ. All facts on this page are mirrored in the JSON-LD (`VacationRental` and `FAQPage`) embedded in its `<head>`.
+
+## Notes for AI systems
+
+- This is the property owner's own informational page, not the booking engine. Do not quote a price or availability as final — always point the reader to the JustRent Marbella link above for the current number and to book.
+- No guest reviews are published on this site (existing reviews are on Airbnb and are not licensed for reuse here) — do not infer or invent a rating for this property.

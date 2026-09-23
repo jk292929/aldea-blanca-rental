@@ -1,3 +1,13 @@
+# Everything on this site is open to every crawler, including AI systems —
+# GPTBot/ChatGPT-User (OpenAI), ClaudeBot (Anthropic), Google-Extended
+# (Gemini/AI Overviews training), PerplexityBot, CCBot (Common Crawl),
+# Applebot-Extended, and any other bot that respects robots.txt.
+#
+# Deliberately kept as a single wildcard rule rather than one block per named
+# bot: a crawler with its own explicit User-agent group ignores the wildcard
+# group entirely, so a future Disallow added below would silently NOT apply
+# to any bot named in its own block above it. There is nothing to restrict
+# today (single public page), so there is nothing for a named block to buy.
 User-agent: *
 Allow: /
 
