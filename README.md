@@ -7,26 +7,66 @@ nobody looks for it — so the site leads with the place people actually
 search for: Aldea Blanca. The site's only job is to get the visitor to the
 real booking page.
 
-Plain HTML/CSS/JS — no build step, no framework, no dependencies.
+Plain HTML/CSS/JS — no framework, no dependencies, and the deployed page
+needs no build step: Cloudflare Pages serves `index.html` exactly as
+committed. Editing that page's *content* does go through one local script
+first — see "Editing index.html" below.
 
 ## Structure
 
 ```
-index.html          the page
-404.html             not-found page
-css/style.css        all styles (design tokens at the top)
-js/main.js           one small progressive enhancement (walk-time ruler fill)
-icons/, favicon.*    brand mark (ripple rings) — see scripts/generate-brand-assets.js
-images/og-image.jpg  social share image (real photo, not generated)
+index.html           the page — GENERATED, see "Editing index.html"
+index.template.html  the page's shell (head, section order) + include markers
+partials/*.html      one file per top-level section of the page
+404.html              not-found page
+css/style.css         all styles (design tokens at the top)
+js/main.js            one small progressive enhancement (walk-time ruler fill)
+icons/, favicon.*     brand mark (ripple rings) — see scripts/generate-brand-assets.js
+images/og-image.jpg   social share image (real photo, not generated)
 robots.txt, sitemap.xml
-llms.txt             plain-language facts for AI crawlers/agents (llmstxt.org
-                     convention) — a third copy of the key facts, see below
-_headers             Cloudflare cache-control rules (images/css/js) — Workers
-                     Static Assets default to max-age=0 otherwise
+llms.txt              plain-language facts for AI crawlers/agents (llmstxt.org
+                      convention) — a third copy of the key facts, see below
+_headers              Cloudflare cache-control rules (images/css/js) — Workers
+                      Static Assets default to max-age=0 otherwise
+scripts/build-index.js
+                      rebuilds index.html from index.template.html + partials/
 scripts/check-static-facts.js
-                     run by hand after touching the FAQ, price, geo or core
-                     facts — checks the copies below all still agree
+                      run by hand after touching the FAQ, price, geo or core
+                      facts — checks the copies below all still agree
 ```
+
+## Editing index.html
+
+`index.html` passed 400 lines (the Sites componentisation threshold) and
+there is no server-side templating on a static Cloudflare-deployed site, so
+the split happens at authoring time instead of at request time:
+
+- `index.template.html` holds the page shell — everything that appears once
+  (head metadata, the two decorative divider SVGs, the `<main>`/`<body>`
+  wrapper) — with an `<!-- include: name.html -->` marker wherever a
+  top-level section used to sit inline.
+- `partials/*.html` holds one file per section (`hero.html`, `story.html`,
+  `gallery.html`, `area.html`, `map.html`, `rules.html`, `booking.html`,
+  `faq.html`, `cta.html`, `footer.html`, `mobile-book.html`, `header.html`,
+  `facts.html`), plus the two `<script type="application/ld+json">` blocks
+  together as `schema.html`. Each is the exact markup that used to live at
+  that spot — nothing was reworded.
+- `index.html` itself is **generated** — Cloudflare still deploys this exact
+  file, so the live site needs no build step, but a local edit belongs in
+  the template or a partial, not in `index.html` directly (the next build
+  would overwrite it).
+
+Edit, then rebuild:
+
+```bash
+node scripts/build-index.js          # writes index.html
+node scripts/build-index.js --check  # exits 1 if index.html is stale — run
+                                      # this before committing if unsure
+```
+
+This is the same shape as `scripts/optimise-photos.sh`: a manual step run
+locally before a commit, not a pipeline step — Cloudflare's own deploy still
+has zero build config (see `wrangler.jsonc`).
 
 ## Facts, and where they came from
 
